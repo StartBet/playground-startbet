@@ -1,0 +1,28 @@
+/* Tokens do design system: precisam vir antes do Tailwind. */
+@import '@startbet/st-core-ui/tokens.css';
+
+/* Famílias tipográficas usadas por `font-st-heading`, `font-st-highlight` e
+   `font-st-body`. Os arquivos são servidos em /assets/fonts (ver nuxt.config). */
+@import '@startbet/st-core-ui/base-neue.css';
+@import '@startbet/st-core-ui/montserrat.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-st-surface-1 font-st-body text-st-content-default antialiased;
+  }
+}
+
+@layer components {
+  /* Largura de leitura padrão das páginas de protótipo. */
+  .st-container {
+    @apply mx-auto w-full max-w-st-160 px-st-2 md:px-st-6 lg:px-st-10;
+  }
+}

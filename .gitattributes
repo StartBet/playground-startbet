@@ -1,0 +1,23 @@
+# Normaliza fim de linha: LF no repositório e no working tree, em qualquer SO.
+# Sem isso, o core.autocrlf do Windows grava CRLF em disco e o Prettier
+# (endOfLine: 'lf') acusa erro em toda linha de todo arquivo.
+* text=auto eol=lf
+
+# Arquivos binários nunca devem ser convertidos
+*.ico binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.mp4 binary
+
+# Scripts que precisam de CRLF no Windows
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

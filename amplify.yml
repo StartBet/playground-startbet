@@ -1,0 +1,61 @@
+version: 1
+
+env:
+  variables:
+    # husky não deve tentar instalar git hooks no ambiente de build
+    HUSKY: '0'
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm install 22 && nvm use 22
+        - node -v
+        - npm ci
+    build:
+      commands:
+        - npm run lint
+        - npm test
+        # O ambiente de build do Amplify injeta NITRO_PRESET=aws-amplify. Com
+        # esse preset o Nitro gera um bundle SSR em .amplify-hosting/compute,
+        # escreve os estáticos em .amplify-hosting/static e NÃO pré-renderiza a
+        # rota "/" (ela seria servida pela função em runtime). Resultado: nunca
+        # existia index.html. Forçamos o preset estático.
+        - rm -rf .output .amplify-hosting
+        - NITRO_PRESET=static npm run generate
+        - test -f .output/public/index.html
+    postBuild:
+      commands:
+        # Cópia de segurança da home: se o Amplify voltar a tratar a app como
+        # SSR, ele descarta o index.html da raiz e "/" pode ser apontado para
+        # home.html por uma regra de reescrita 200 no console.
+        - cp .output/public/index.html .output/public/home.html
+        - ls -la .output/public
+  artifacts:
+    # publica apenas o resultado estático — nada de servidor Node
+    baseDirectory: .output/public
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+
+customHeaders:
+  # assets com hash no nome: podem ser cacheados para sempre
+  - pattern: '/_nuxt/**/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  # HTML mantém o mesmo nome entre deploys: nunca cachear
+  - pattern: '/*.html'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=0, must-revalidate'
+  - pattern: '/**/*.html'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=0, must-revalidate'
+  - pattern: '/_payload.json'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=0, must-revalidate'
