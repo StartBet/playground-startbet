@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  StAvatar,
   StBadge,
   StButton,
   StCarousel,
@@ -330,16 +331,7 @@ useHead({ title: 'Gamificação · Playground' })
 
       <div class="flex flex-wrap items-center justify-between gap-st-2">
         <div class="flex items-center gap-st-2">
-          <StPaper
-            variant="surface-2"
-            border="1"
-            border-radius="2"
-            :elevation="0"
-            padding="2"
-            class-name="flex h-st-10 w-st-10 items-center justify-center"
-          >
-            <StIcon name="trophy" :size="4" aria-label="Próximo nível" />
-          </StPaper>
+          <StAvatar name="Jogador" alt="Jogador" size="large" color="purple" />
           <div class="flex flex-col">
             <StTypography variant="highlight-medium">Jogador</StTypography>
             <StTypography variant="body-small" class-name="text-st-content-ghost">
@@ -363,7 +355,7 @@ useHead({ title: 'Gamificação · Playground' })
         >
           <StIcon name="check" :size="3" aria-label="Prêmio" />
           <StTypography variant="body-medium" class-name="flex-1">{{ premio }}</StTypography>
-          <StBadge variant="system" value="Bloqueado" size="small" />
+          <StIcon name="lock" :size="3" aria-label="Bloqueado" class-name="text-st-content-ghost" />
         </StPaper>
       </div>
 
