@@ -14,6 +14,7 @@ import {
   faMoon,
   faPalette,
   faSun,
+  faTrophy,
   faUpRightFromSquare,
   faXmark
 } from '@fortawesome/free-solid-svg-icons'
@@ -49,6 +50,7 @@ export default defineNuxtPlugin(() => {
     faMoon,
     faPalette,
     faSun,
+    faTrophy,
     faUpRightFromSquare,
     faXmark
   )
