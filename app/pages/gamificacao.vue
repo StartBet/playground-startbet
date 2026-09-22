@@ -263,6 +263,9 @@ useHead({ title: 'Gamificação · Playground' })
         :gap="2"
         arrows="none"
         bullets="outside"
+        slide-align="center"
+        infinite-loop
+        highlight
         auto-height
       >
         <StPaper
