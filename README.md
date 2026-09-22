@@ -7,7 +7,7 @@ no design system, pode criar mas utilizando as classes e tokens do design system
 **Evitar ao máximo criar algo novo!**
 
 - **Stack:** Nuxt 4 · Vue 3 · TypeScript · Tailwind CSS 3
-- **Design system:** [`@startbet/st-core-ui`](https://startbet.github.io/st-core-ui/) v0.32.0
+- **Design system:** [`@startbet/st-core-ui`](https://startbet.github.io/st-core-ui/) v0.36.0
 - **Saída:** site estático (`nuxt generate`), publicado via AWS Amplify
 
 ## Índice da documentação

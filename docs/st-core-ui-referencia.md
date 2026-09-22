@@ -2,7 +2,7 @@
 
 > **Leia primeiro [`componentes.md`](componentes.md).** Este arquivo é um dump
 > longo gerado a partir do código-fonte da lib na versão **0.30.0**; o projeto
-> hoje usa a **0.32.0**. O que veio depois — `StCarousel`, `StBullets`,
+> hoje usa a **0.36.0**. O que veio depois — `StCarousel`, `StBullets`,
 > `StProgressBar`, o composable `useResponsiveValue` e os tipos
 > `ResponsiveValue` / `StBreakpoint` — está documentado apenas em
 > `componentes.md`. Use este arquivo para consulta pontual de detalhes internos
