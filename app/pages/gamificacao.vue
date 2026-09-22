@@ -2,6 +2,7 @@
 import {
   StBadge,
   StButton,
+  StCarousel,
   StGrid,
   StIcon,
   StPaper,
@@ -10,6 +11,19 @@ import {
 } from '@startbet/st-core-ui'
 
 const beneficios = ['Torneios públicos', 'Minigames', 'Cashback até 20%']
+
+const desafios = [
+  { titulo: 'Confirme seu e-mail', descricao: '+500 xp e 5 giros no Aviator', percent: 25 },
+  { titulo: 'Complete seu perfil', descricao: '+300 xp e 3 giros no Aviator', percent: 40 },
+  { titulo: 'Faça sua primeira aposta', descricao: '+700 xp e 10 giros no Aviator', percent: 60 },
+  { titulo: 'Jogue em um torneio', descricao: '+1.000 xp e 20 giros no Aviator', percent: 15 },
+  { titulo: 'Explore os minigames', descricao: '+400 xp e 5 giros no Aviator', percent: 35 },
+  { titulo: 'Aposte em um jogo ao vivo', descricao: '+600 xp e 8 giros no Aviator', percent: 20 },
+  { titulo: 'Acerte três palpites', descricao: '+800 xp e 12 giros no Aviator', percent: 50 },
+  { titulo: 'Volte amanhã', descricao: '+200 xp e 2 giros no Aviator', percent: 75 }
+]
+
+const paginasDeDesafios = [desafios.slice(0, 4), desafios.slice(4)]
 
 defineOptions({ name: 'GamificacaoPage' })
 
@@ -101,6 +115,67 @@ useHead({ title: 'Gamificação · Playground' })
           </StButton>
         </div>
       </StGrid>
+    </StPaper>
+
+    <StPaper
+      variant="surface-0"
+      border="1"
+      border-radius="2"
+      :elevation="2"
+      padding="3"
+      padding-md="4"
+      class-name="flex flex-col gap-st-3"
+    >
+      <div class="flex flex-col gap-st-1">
+        <StTypography as="h2" variant="heading-3">Desafios disponíveis</StTypography>
+        <StTypography variant="body-medium" class-name="text-st-content-ghost">
+          Complete os desafios e avance ainda mais na sua jornada.
+        </StTypography>
+      </div>
+
+      <StCarousel :slide-per-page="1" :gap="3" arrows="outside" bullets="outside" auto-height>
+        <div v-for="(pagina, indice) in paginasDeDesafios" :key="indice" class="w-full">
+          <StGrid :cols="1" :md-cols="2" :gap="2">
+            <StPaper
+              v-for="desafio in pagina"
+              :key="desafio.titulo"
+              variant="surface-1"
+              border="1"
+              border-radius="1"
+              :elevation="0"
+              padding="2"
+              class-name="flex min-h-st-24 flex-col gap-st-2"
+            >
+              <div class="flex items-center gap-st-2">
+                <span
+                  class="flex h-st-6 w-st-6 shrink-0 items-center justify-center rounded-st-1 bg-st-surface-primary text-st-content-primary"
+                >
+                  <StIcon name="check" :size="3" aria-label="Desafio" />
+                </span>
+                <div class="flex min-w-0 flex-1 flex-col">
+                  <StTypography variant="highlight-medium" class-name="truncate">
+                    {{ desafio.titulo }}
+                  </StTypography>
+                  <StTypography variant="body-small" class-name="text-st-content-ghost">
+                    {{ desafio.descricao }}
+                  </StTypography>
+                </div>
+              </div>
+
+              <StProgressBar
+                :percent="desafio.percent"
+                :text="`${desafio.percent}%`"
+                variant="positive"
+                size="small"
+              />
+
+              <StButton variant="outline" size="small" class-name="self-start">
+                Verificar agora
+              </StButton>
+            </StPaper>
+          </StGrid>
+        </div>
+      </StCarousel>
     </StPaper>
   </div>
 </template>
