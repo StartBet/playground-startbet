@@ -1,6 +1,6 @@
 # Componentes do st-core-ui
 
-Referência rápida de tudo que `@startbet/st-core-ui@0.32.0` exporta. Os exemplos
+Referência rápida de tudo que `@startbet/st-core-ui@0.36.0` exporta. Os exemplos
 usam a sintaxe que já funciona neste projeto (Vue 3 + `<script setup>`).
 
 Storybook oficial: <https://startbet.github.io/st-core-ui/>
