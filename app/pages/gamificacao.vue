@@ -13,14 +13,54 @@ import {
 const beneficios = ['Torneios públicos', 'Minigames', 'Cashback até 20%']
 
 const desafios = [
-  { titulo: 'Confirme seu e-mail', descricao: '+500 xp e 5 giros no Aviator', percent: 25 },
-  { titulo: 'Complete seu perfil', descricao: '+300 xp e 3 giros no Aviator', percent: 40 },
-  { titulo: 'Faça sua primeira aposta', descricao: '+700 xp e 10 giros no Aviator', percent: 60 },
-  { titulo: 'Jogue em um torneio', descricao: '+1.000 xp e 20 giros no Aviator', percent: 15 },
-  { titulo: 'Explore os minigames', descricao: '+400 xp e 5 giros no Aviator', percent: 35 },
-  { titulo: 'Aposte em um jogo ao vivo', descricao: '+600 xp e 8 giros no Aviator', percent: 20 },
-  { titulo: 'Acerte três palpites', descricao: '+800 xp e 12 giros no Aviator', percent: 50 },
-  { titulo: 'Volte amanhã', descricao: '+200 xp e 2 giros no Aviator', percent: 75 }
+  {
+    status: 'Iniciante',
+    objetivo: 'Confirme seu e-mail',
+    recompensa: '+500 xp e 5 giros no Aviator',
+    percent: 25
+  },
+  {
+    status: 'Iniciante',
+    objetivo: 'Complete seu perfil',
+    recompensa: '+300 xp e 3 giros no Aviator',
+    percent: 40
+  },
+  {
+    status: 'Iniciante',
+    objetivo: 'Faça sua primeira aposta',
+    recompensa: '+700 xp e 10 giros no Aviator',
+    percent: 60
+  },
+  {
+    status: 'Iniciante',
+    objetivo: 'Jogue em um torneio',
+    recompensa: '+1.000 xp e 20 giros no Aviator',
+    percent: 15
+  },
+  {
+    status: 'Iniciante',
+    objetivo: 'Explore os minigames',
+    recompensa: '+400 xp e 5 giros no Aviator',
+    percent: 35
+  },
+  {
+    status: 'Iniciante',
+    objetivo: 'Aposte em um jogo ao vivo',
+    recompensa: '+600 xp e 8 giros no Aviator',
+    percent: 20
+  },
+  {
+    status: 'Iniciante',
+    objetivo: 'Acerte três palpites',
+    recompensa: '+800 xp e 12 giros no Aviator',
+    percent: 50
+  },
+  {
+    status: 'Iniciante',
+    objetivo: 'Volte amanhã',
+    recompensa: '+200 xp e 2 giros no Aviator',
+    percent: 75
+  }
 ]
 
 const paginasDeDesafios = [desafios.slice(0, 4), desafios.slice(4)]
@@ -138,38 +178,41 @@ useHead({ title: 'Gamificação · Playground' })
           <StGrid :cols="1" :md-cols="2" :gap="2">
             <StPaper
               v-for="desafio in pagina"
-              :key="desafio.titulo"
+              :key="desafio.objetivo"
               variant="surface-1"
               border="1"
               border-radius="1"
               :elevation="0"
               padding="2"
-              class-name="flex min-h-st-24 flex-col gap-st-2"
+              class-name="flex min-h-st-24 flex-row items-stretch gap-st-2"
             >
-              <div class="flex items-center gap-st-2">
-                <span
-                  class="flex h-st-6 w-st-6 shrink-0 items-center justify-center rounded-st-1 bg-st-surface-primary text-st-content-primary"
-                >
-                  <StIcon name="check" :size="3" aria-label="Desafio" />
-                </span>
-                <div class="flex min-w-0 flex-1 flex-col">
-                  <StTypography variant="highlight-medium" class-name="truncate">
-                    {{ desafio.titulo }}
+              <span
+                class="flex w-st-6 shrink-0 items-center justify-center rounded-st-1 bg-st-surface-primary text-st-content-primary"
+              >
+                <StIcon name="check" :size="3" aria-label="Desafio" />
+              </span>
+
+              <div class="flex min-w-0 flex-1 flex-col justify-center gap-st-1">
+                <div class="flex items-center gap-st-2">
+                  <StTypography variant="highlight-medium" class-name="shrink-0">
+                    {{ desafio.status }}
                   </StTypography>
-                  <StTypography variant="body-small" class-name="text-st-content-ghost">
-                    {{ desafio.descricao }}
-                  </StTypography>
+                  <StProgressBar
+                    :percent="desafio.percent"
+                    variant="positive"
+                    size="small"
+                    class-name="min-w-0 flex-1"
+                  />
                 </div>
+                <StTypography variant="body-small" class-name="text-st-content-default">
+                  {{ desafio.objetivo }}
+                </StTypography>
+                <StTypography variant="body-small" class-name="text-st-content-ghost">
+                  {{ desafio.recompensa }}
+                </StTypography>
               </div>
 
-              <StProgressBar
-                :percent="desafio.percent"
-                :text="`${desafio.percent}%`"
-                variant="positive"
-                size="small"
-              />
-
-              <StButton variant="outline" size="small" class-name="self-start">
+              <StButton variant="ghost" size="small" class-name="shrink-0 self-center">
                 Verificar agora
               </StButton>
             </StPaper>
