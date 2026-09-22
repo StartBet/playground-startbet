@@ -77,7 +77,7 @@ const niveis = [
     nome: 'Profissional',
     percent: 22,
     faixa: 'Nível 21 · 21–30',
-    beneficios: ['Torneio exclusivo', '2 minigames diário', 'Giros extras']
+    beneficios: ['Torneio exclusivo', '2 minigames diários', 'Giros extras']
   },
   {
     nome: 'Expert',
