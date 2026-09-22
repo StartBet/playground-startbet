@@ -184,7 +184,7 @@ useHead({ title: 'Gamificação · Playground' })
               border-radius="1"
               :elevation="0"
               padding="1"
-              class-name="flex min-h-st-20 flex-row items-center gap-st-1"
+              class-name="flex flex-row items-center gap-st-1"
             >
               <span
                 class="flex h-st-6 w-st-6 shrink-0 items-center justify-center rounded-st-1 bg-st-surface-primary text-st-content-primary"
