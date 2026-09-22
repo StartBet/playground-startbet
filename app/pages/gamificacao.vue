@@ -173,7 +173,7 @@ useHead({ title: 'Gamificação · Playground' })
         </StTypography>
       </div>
 
-      <StCarousel :slide-per-page="1" :gap="3" arrows="outside" bullets="outside" auto-height>
+      <StCarousel :slide-per-page="1" :gap="2" arrows="none" bullets="outside" auto-height>
         <div v-for="(pagina, indice) in paginasDeDesafios" :key="indice" class="w-full">
           <StGrid :cols="1" :md-cols="2" :gap="2">
             <StPaper
@@ -183,27 +183,23 @@ useHead({ title: 'Gamificação · Playground' })
               border="1"
               border-radius="1"
               :elevation="0"
-              padding="2"
-              class-name="flex min-h-st-24 flex-row items-stretch gap-st-2"
+              padding="1"
+              class-name="flex min-h-st-20 flex-row items-center gap-st-1"
             >
               <span
-                class="flex w-st-6 shrink-0 items-center justify-center rounded-st-1 bg-st-surface-primary text-st-content-primary"
+                class="flex h-st-6 w-st-6 shrink-0 items-center justify-center rounded-st-1 bg-st-surface-primary text-st-content-primary"
               >
                 <StIcon name="check" :size="3" aria-label="Desafio" />
               </span>
 
               <div class="flex min-w-0 flex-1 flex-col justify-center gap-st-1">
-                <div class="flex items-center gap-st-2">
-                  <StTypography variant="highlight-medium" class-name="shrink-0">
-                    {{ desafio.status }}
-                  </StTypography>
-                  <StProgressBar
-                    :percent="desafio.percent"
-                    variant="positive"
-                    size="small"
-                    class-name="min-w-0 flex-1"
-                  />
-                </div>
+                <StTypography variant="body-medium">{{ desafio.status }}</StTypography>
+                <StProgressBar
+                  :percent="desafio.percent"
+                  variant="positive"
+                  size="small"
+                  class-name="w-full"
+                />
                 <StTypography variant="body-small" class-name="text-st-content-default">
                   {{ desafio.objetivo }}
                 </StTypography>
