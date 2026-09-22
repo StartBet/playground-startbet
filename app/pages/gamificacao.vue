@@ -65,6 +65,29 @@ const desafios = [
 
 const paginasDeDesafios = [desafios.slice(0, 4), desafios.slice(4)]
 
+const niveis = [
+  {
+    nome: 'Intermediário',
+    percent: 12,
+    faixa: 'Nível 11 · 11–20',
+    beneficios: ['Torneio exclusivo', 'Minigame diário', 'Cashback até 20%']
+  },
+  {
+    nome: 'Profissional',
+    percent: 22,
+    faixa: 'Nível 21 · 21–30',
+    beneficios: ['Torneio exclusivo', '2 minigames diário', 'Giros extras']
+  },
+  {
+    nome: 'Expert',
+    percent: 32,
+    faixa: 'Nível 31 · 31–40',
+    beneficios: ['Cashback 1%', 'Prêmio diário', 'Girasorte']
+  }
+]
+
+const premiosProximoNivel = ['Cashback 3%', 'Bônus Jogador', 'Bônus Aniversário']
+
 defineOptions({ name: 'GamificacaoPage' })
 
 useHead({ title: 'Gamificação · Playground' })
@@ -215,6 +238,138 @@ useHead({ title: 'Gamificação · Playground' })
           </StGrid>
         </div>
       </StCarousel>
+    </StPaper>
+
+    <StPaper
+      variant="surface-0"
+      border="1"
+      border-radius="2"
+      :elevation="2"
+      padding="3"
+      padding-md="4"
+      class-name="flex flex-col gap-st-4"
+    >
+      <div class="flex flex-col gap-st-1">
+        <StTypography as="h2" variant="heading-3">Níveis</StTypography>
+        <StTypography variant="body-medium" class-name="text-st-content-ghost">
+          Evolua sua jornada e desbloqueie benefícios exclusivos.
+        </StTypography>
+      </div>
+
+      <StCarousel
+        :slide-per-page="1"
+        :md-slide-per-page="3"
+        :gap="2"
+        arrows="none"
+        bullets="outside"
+        auto-height
+      >
+        <StPaper
+          v-for="nivel in niveis"
+          :key="nivel.nome"
+          variant="surface-1"
+          border="1"
+          border-radius="2"
+          :elevation="0"
+          padding="2"
+          class-name="flex flex-col gap-st-2"
+        >
+          <div class="flex items-center gap-st-2">
+            <StPaper
+              variant="surface-primary"
+              border="1"
+              border-radius="1"
+              :elevation="0"
+              padding="1"
+              class-name="flex h-st-8 w-st-8 shrink-0 items-center justify-center"
+            >
+              <StIcon name="trophy" :size="4" aria-label="Nível" />
+            </StPaper>
+            <div class="flex min-w-0 flex-1 flex-col">
+              <StTypography variant="highlight-medium">{{ nivel.nome }}</StTypography>
+              <div class="flex items-center gap-st-1">
+                <StTypography variant="highlight-medium">1.237</StTypography>
+                <StTypography variant="body-small" class-name="text-st-content-ghost">
+                  | 2.099 xp
+                </StTypography>
+              </div>
+            </div>
+          </div>
+
+          <StProgressBar :percent="nivel.percent" variant="positive" size="small" />
+          <div class="flex justify-between gap-st-1">
+            <StTypography variant="body-small" class-name="text-st-content-ghost">
+              {{ nivel.faixa }}
+            </StTypography>
+            <StTypography variant="body-small" class-name="text-st-content-ghost">
+              {{ nivel.percent }}%
+            </StTypography>
+          </div>
+
+          <div class="flex flex-col gap-st-1">
+            <div
+              v-for="beneficio in nivel.beneficios"
+              :key="beneficio"
+              class="flex items-center gap-st-1"
+            >
+              <StIcon name="check" :size="2" aria-label="Benefício" />
+              <StTypography variant="body-small" class-name="flex-1">{{ beneficio }}</StTypography>
+              <StBadge variant="info" value="Novo" size="small" />
+            </div>
+          </div>
+
+          <StButton color="positive" full-width icon-right="chevron-right">Ver tudo</StButton>
+        </StPaper>
+      </StCarousel>
+
+      <div class="border-t border-st-border-1 pt-st-3">
+        <StTypography variant="body-medium" class-name="text-st-content-ghost">
+          Prêmios do próximo nível:
+        </StTypography>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-st-2">
+        <div class="flex items-center gap-st-2">
+          <StPaper
+            variant="surface-2"
+            border="1"
+            border-radius="2"
+            :elevation="0"
+            padding="2"
+            class-name="flex h-st-10 w-st-10 items-center justify-center"
+          >
+            <StIcon name="trophy" :size="4" aria-label="Próximo nível" />
+          </StPaper>
+          <div class="flex flex-col">
+            <StTypography variant="highlight-medium">Jogador</StTypography>
+            <StTypography variant="body-small" class-name="text-st-content-ghost">
+              Nv. 21 | Nv. 30
+            </StTypography>
+          </div>
+        </div>
+        <StButton variant="ghost" size="small">Faltam 10 níveis</StButton>
+      </div>
+
+      <div class="flex flex-col gap-st-1">
+        <StPaper
+          v-for="premio in premiosProximoNivel"
+          :key="premio"
+          variant="surface-2"
+          border="1"
+          border-radius="1"
+          :elevation="0"
+          padding="1 2"
+          class-name="flex items-center gap-st-2"
+        >
+          <StIcon name="check" :size="3" aria-label="Prêmio" />
+          <StTypography variant="body-medium" class-name="flex-1">{{ premio }}</StTypography>
+          <StBadge variant="system" value="Bloqueado" size="small" />
+        </StPaper>
+      </div>
+
+      <StTypography variant="body-medium" align="center" class-name="text-st-content-ghost">
+        Desbloqueie tudo no Nível 21.
+      </StTypography>
     </StPaper>
   </div>
 </template>
